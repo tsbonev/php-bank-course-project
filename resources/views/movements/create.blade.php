@@ -20,7 +20,8 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('movements.store', ['account_id' => $account_id]) }}">
+      <form method="post" action="{{ route('movements.store') }}">
+      <input type="hidden" value="{{$account_id}}" name="account_id" /> 
         @csrf
         @method('POST')
         <div class="form-group">

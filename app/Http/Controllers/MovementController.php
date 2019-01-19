@@ -35,13 +35,12 @@ class MovementController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param int @account_id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $account_id)
+    public function store(Request $request)
     {
         $account = new Movement([
-            'account_id' => $account_id,
+            'account_id' => $request->get('account_id'),
             'amounts' => $request->get('amounts'),
             'type' => $request->get('type')
           ]);

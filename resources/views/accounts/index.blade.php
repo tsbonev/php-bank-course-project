@@ -35,14 +35,16 @@
                 </form>
             </td>
             <td>
-            <form action="{{ route('movements.create', ['account_id' => $account->id] ) }}" method="get">  
+            <form action="{{ route('movements.create') }}" method="get">  
+            <input type="hidden" value="{{$account->id}}" name="account_id" /> 
                 @csrf
                 @method('GET')     
             <button class="btn btn-secondary" type="submit">Make Movement</button>
             </form>
             </td>
             <td>
-            <form action="{{ route('movements.index', ['account_id' => $account->id]  ) }}" method="get">  
+            <form action="{{ route('movements.index') }}" method="get">
+            <input type="hidden" value="{{$account->id}}" name="account_id" />  
                 @csrf
                 @method('GET')     
             <button class="btn btn-primary" type="submit">Show Movements</button>
