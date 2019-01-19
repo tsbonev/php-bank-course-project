@@ -28,24 +28,24 @@
             <td>{{$account->user_id}}</td>
             <td>{{$account->amount}}</td>
             <td>
-                <form action="{{ route('accounts.destroy', $account->id)}}" method="post">
+                <form action="{{ route('accounts.destroy', $account->id ) }}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
             <td>
-            <form action="{{ route('movements.create', $account->id)}}" method="get">  
+            <form action="{{ route('movements.create', ['account_id' => $account->id] ) }}" method="get">  
                 @csrf
                 @method('GET')     
-            <button class="btn btn-info" type="submit">Make Deposit</button>
+            <button class="btn btn-secondary" type="submit">Make Movement</button>
             </form>
             </td>
             <td>
-            <form action="{{ route('movements.create', $account->id)}}" method="get">  
+            <form action="{{ route('movements.index', ['account_id' => $account->id]  ) }}" method="get">  
                 @csrf
                 @method('GET')     
-            <button class="btn btn-info" type="submit">Make Withdraw</button>
+            <button class="btn btn-primary" type="submit">Show Movements</button>
             </form>
             </td>
         </tr>

@@ -15,8 +15,8 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accounts = Account::all();
-
+        $accounts = Account::where('user_id', '=', Auth::id())->get();
+        echo Auth::id();
         return view('accounts.index', compact('accounts'));
     }
 
@@ -33,50 +33,15 @@ class AccountController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
           $account = new Account([
             'user_id' => Auth::id()
           ]);
           $account->save();
           return redirect('/accounts')->with('success', 'Account has been created');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -87,6 +52,9 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $account = Account::find($id);
+        $account->delete();
+
+     return redirect('/accounts')->with('success', 'Account has been deleted Successfully');
     }
 }
