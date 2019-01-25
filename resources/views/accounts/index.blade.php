@@ -18,7 +18,7 @@
           <td>ID</td>
           <td>User id</td>
           <td>Amount</td>
-          <td colspan="3">Action</td>
+          <td colspan="2">Action</td>
         </tr>
     </thead>
     <tbody>
@@ -27,13 +27,6 @@
             <td>{{$account->id}}</td>
             <td>{{$account->user_id}}</td>
             <td>{{$account->amount}}</td>
-            <td>
-                <form action="{{ route('accounts.destroy', $account->id ) }}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-            </td>
             <td>
             <form action="{{ route('movements.create') }}" method="get">  
             <input type="hidden" value="{{$account->id}}" name="account_id" /> 

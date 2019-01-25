@@ -16,7 +16,6 @@ class AccountController extends Controller
     public function index()
     {
         $accounts = Account::where('user_id', '=', Auth::id())->get();
-        echo Auth::id();
         return view('accounts.index', compact('accounts'));
     }
 
@@ -42,19 +41,5 @@ class AccountController extends Controller
           ]);
           $account->save();
           return redirect('/accounts')->with('success', 'Account has been created');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $account = Account::find($id);
-        $account->delete();
-
-     return redirect('/accounts')->with('success', 'Account has been deleted Successfully');
     }
 }
