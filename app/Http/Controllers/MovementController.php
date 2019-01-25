@@ -15,7 +15,6 @@ class MovementController extends Controller
     public function index(Request $request)
     {
         $movements = Movement::where('account_id', '=', $request->get('account_id'))->get();
-        echo $request->get('account_id');
         return view('movements.index', compact('movements'));
     }
 
@@ -27,7 +26,6 @@ class MovementController extends Controller
      */
     public function create(Request $request)
     {
-        echo $request->get('account_id');
         return view('movements.create', ['account_id' => $request->get('account_id')] );
     }
 
@@ -39,9 +37,13 @@ class MovementController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'amount' => 'required|numeric',
+        ]);
+
         $account = new Movement([
             'account_id' => $request->get('account_id'),
-            'amounts' => $request->get('amounts'),
+            'amounts' => $request->get('amount'),
             'type' => $request->get('type')
           ]);
           $account->save();

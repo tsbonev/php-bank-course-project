@@ -25,8 +25,8 @@
         @csrf
         @method('POST')
         <div class="form-group">
-              <label for="amounts">Amount :</label>
-              <input type="double" class="form-control" name="amounts"/>
+              <label for="amount">Amount :</label>
+              <input type="double" class="form-control" name="amount"/>
         </div>
         <div class="form-group">
               <label for="type">Type :</label>

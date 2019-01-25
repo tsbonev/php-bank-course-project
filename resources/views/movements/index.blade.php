@@ -27,7 +27,7 @@
             <td>{{$movement->id}}</td>
             <td>{{$movement->type}}</td>
             <td>{{$movement->amounts}}</td>
-            <td>{{$movement->time}}</td>
+            <td>{{$movement->created_at}}</td>
         </tr>
         @endforeach
     </tbody>
