@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Movement;
 use Auth;
 
 class AccountController extends Controller
@@ -16,6 +17,17 @@ class AccountController extends Controller
     public function index()
     {
         $accounts = Account::where('user_id', '=', Auth::id())->get();
+        foreach($accounts as $key){
+            $amount = 0;
+            
+            $amount += Movement::where('account_id', '=', $key['id'])
+            ->where('type', '=', 'Deposit')->sum('amounts');
+            $amount -= Movement::where('account_id', '=', $key['id'])
+            ->where('type', '=', 'Withdraw')->sum('amounts');
+        
+
+            $key['amount'] = $amount;
+        }
         return view('accounts.index', compact('accounts'));
     }
 
